@@ -1,4 +1,4 @@
-# Compiler and Flags
+# Compiler and Flags 
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -Wno-format -Wno-format-truncation
 
