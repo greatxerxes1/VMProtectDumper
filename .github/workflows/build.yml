@@ -15,11 +15,9 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    # 2. Set up GCC Compiler via MinGW
-    - name: Set up GCC (MinGW)
-      uses: egor-turobsev/setup-gcc@v1
-      with:
-        platform: x64
+    # 2. Add pre-installed MinGW to the environment path
+    - name: Add MSYS2 / MinGW to PATH
+      run: echo "C:\msys64\mingw64\bin" >> $env:GITHUB_PATH
 
     # 3. Build using the Makefile
     - name: Compile Project
