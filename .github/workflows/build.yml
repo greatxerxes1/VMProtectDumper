@@ -1,0 +1,33 @@
+name: Build VMProtect Dumper
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    # 1. Download the repository source files
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 2. Set up GCC Compiler via MinGW
+    - name: Set up GCC (MinGW)
+      uses: egor-turobsev/setup-gcc@v1
+      with:
+        platform: x64
+
+    # 3. Build using the Makefile
+    - name: Compile Project
+      run: mingw32-make all
+
+    # 4. Save the compiled tool so you can download it
+    - name: Upload Executable Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: VMProtectDumper-Release
+        path: VMProtectDumper.exe
